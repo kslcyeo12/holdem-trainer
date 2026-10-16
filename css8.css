@@ -1,0 +1,49 @@
+/* Mobile M5: ergonomic controls, anchored pots, clearer chips */
+@media (pointer:coarse) and (orientation:landscape){
+  /* Keep the actual table visible while sheets are open */
+  .side.mobile-settings{max-height:62dvh!important}
+  .side.mobile-quiz{max-height:56dvh!important}
+  .side.mobile-quiz,.side.mobile-settings{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+
+  /* Slightly larger chip + amount display without making seats larger */
+  .tablecard .betmarker,.tablecard.nine .betmarker{transform:scale(1.08)!important;min-width:74px!important;gap:4px!important}
+  .tablecard .betamt,.tablecard.nine .betamt{font-size:10px!important;line-height:1!important;padding:4px 7px!important;font-weight:900!important}
+  .tablecard .betstack,.tablecard.nine .betstack{transform:scale(1.04)!important}
+
+  /* Board always owns the upper-middle area */
+  .tablecard .felt .board,.tablecard.nine .felt .board{top:25.5%!important}
+  .tablecard .felt .street,.tablecard.nine .felt .street{top:8%!important}
+  .currentpot{top:60%!important;min-width:128px!important;padding:5px 9px!important}
+  .currentpot strong{font-size:17px!important}
+  .currentpot small,.currentpot span{font-size:6.5px!important}
+
+  /* Confirmed pots remain readable when JS anchors them in front of all-in players */
+  #potBank .potpile{min-width:78px!important;max-width:90px!important;padding:4px 5px!important;border-radius:9px!important}
+  #potBank .potpile .chipvisual{height:18px!important}
+  #potBank .potpile .chipvisual i{width:17px!important;height:17px!important;border-width:2px!important;margin-left:-5px!important}
+  #potBank .potpile b{font-size:6px!important}
+  #potBank .potpile strong{font-size:12px!important;line-height:1.05!important}
+  #potBank .potpile small{font-size:5px!important;line-height:1.08!important}
+
+  /* Mobile practical mode: tap-first is easier than precise drag */
+  .betmarker.mobile-selected{filter:drop-shadow(0 0 7px #ffe071) drop-shadow(0 0 12px #ffe071)!important;transform:scale(1.16)!important}
+  .dragpotzone.mobile-target{box-shadow:0 0 0 2px #f0cb62,0 0 18px #f0cb6255!important}
+  .tablecard.practical-split .dragpotzone,.tablecard.nine.practical-split .dragpotzone{min-height:54px!important;width:82px!important;padding:4px 5px!important}
+  .tablecard.practical-split .dragpotzone strong{font-size:12px!important}
+  .tablecard.practical-split .dragpotzone b{font-size:6px!important}
+
+  /* On phones, use the controls inside the problem sheet instead of top floating controls */
+  .toppracticalactions{display:none!important}
+  .practicalwrap .dragactions{display:flex!important;position:sticky;bottom:-8px;z-index:30;gap:6px;margin-top:8px;padding:7px 0 2px;background:linear-gradient(transparent,#0b1117 28%)}
+  .practicalwrap .dragactions button{flex:1;min-height:38px;border-radius:9px;font-size:10px;font-weight:900}
+  .practicalwrap .dragactions .primarydrag{background:linear-gradient(#e4c66e,#b89042);color:#171109;border:0}
+
+  /* Larger touch targets in sheets */
+  .side button,.side input,.side select{min-height:38px}
+  .modebtn{min-height:44px!important}
+  .winnercheckgroup label{min-height:36px!important}
+
+  /* Mobile helper toast */
+  #judgeToast.hint{border-color:#52779d;background:#152a3df4;color:#eaf5ff}
+  #judgeToast.hint b{font-size:12px}
+}
