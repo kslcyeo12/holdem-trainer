@@ -37,6 +37,7 @@
   .practicalwrap .dragactions{display:flex!important;position:sticky;bottom:-8px;z-index:30;gap:6px;margin-top:8px;padding:7px 0 2px;background:linear-gradient(transparent,#0b1117 28%)}
   .practicalwrap .dragactions button{flex:1;min-height:38px;border-radius:9px;font-size:10px;font-weight:900}
   .practicalwrap .dragactions .primarydrag{background:linear-gradient(#e4c66e,#b89042);color:#171109;border:0}
+  #quiz.practical-done > #continueBtn{display:block!important;min-height:42px!important;margin-top:8px!important}
 
   /* Larger touch targets in sheets */
   .side button,.side input,.side select{min-height:38px}
