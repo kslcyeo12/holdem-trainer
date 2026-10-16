@@ -1,92 +1,58 @@
-/* Mobile M3: safe-area, readable chip amounts, board-safe pot rail */
+/* Mobile M4: safe-area, readable chips, board-safe pot lane, answer toast */
 @media (pointer:coarse) and (orientation:landscape){
-  /* Respect iPhone landscape camera / Dynamic Island safe areas */
-  .app{
-    padding-left:max(6px, env(safe-area-inset-left))!important;
-    padding-right:max(6px, env(safe-area-inset-right))!important;
-  }
-  .top{
-    padding-left:8px!important;
-    padding-right:8px!important;
-  }
-  .mobilebar{
-    padding-left:max(8px, env(safe-area-inset-left))!important;
-    padding-right:max(8px, env(safe-area-inset-right))!important;
-  }
-  .side{
-    left:max(6px, env(safe-area-inset-left))!important;
-    right:max(6px, env(safe-area-inset-right))!important;
-  }
+  .app{padding-left:max(8px,env(safe-area-inset-left))!important;padding-right:max(8px,env(safe-area-inset-right))!important}
+  .top{padding-left:max(8px,env(safe-area-inset-left))!important;padding-right:max(8px,env(safe-area-inset-right))!important}
+  .mobilebar{padding-left:max(8px,env(safe-area-inset-left))!important;padding-right:max(8px,env(safe-area-inset-right))!important}
+  .side{left:max(6px,env(safe-area-inset-left))!important;right:max(6px,env(safe-area-inset-right))!important}
 
-  /* Keep edge seats fully inside the safe viewport */
-  .tablecard:not(.nine) #seats .seat:nth-child(2),
-  .tablecard:not(.nine) #seats .seat:nth-child(3){right:5px!important}
-  .tablecard:not(.nine) #seats .seat:nth-child(5),
-  .tablecard:not(.nine) #seats .seat:nth-child(6){left:5px!important}
-  .tablecard.nine #seats .seat:nth-child(3),
-  .tablecard.nine #seats .seat:nth-child(4){right:4px!important}
-  .tablecard.nine #seats .seat:nth-child(7),
-  .tablecard.nine #seats .seat:nth-child(8){left:4px!important}
+  /* Keep edge seats clear of camera / Dynamic Island areas */
+  .tablecard:not(.nine) #seats .seat:nth-child(2),.tablecard:not(.nine) #seats .seat:nth-child(3){right:7px!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(5),.tablecard:not(.nine) #seats .seat:nth-child(6){left:7px!important}
+  .tablecard.nine #seats .seat:nth-child(3),.tablecard.nine #seats .seat:nth-child(4){right:6px!important}
+  .tablecard.nine #seats .seat:nth-child(7),.tablecard.nine #seats .seat:nth-child(8){left:6px!important}
 
-  /* Betting chips: amount must be readable at a glance */
-  .tablecard .betmarker,.tablecard.nine .betmarker{
-    transform:scale(.72)!important;
-    min-width:58px!important;
-    gap:3px!important;
-  }
-  .tablecard .betamt,.tablecard.nine .betamt{
-    font-size:9px!important;
-    line-height:1.05!important;
-    padding:3px 6px!important;
-    border-width:1px!important;
-    letter-spacing:0!important;
-    font-variant-numeric:tabular-nums;
-  }
-  .tablecard .betstack,.tablecard.nine .betstack{transform:scale(.9)!important}
-
-  /* Keep board visually dominant and reserve a pot-only lane below it */
-  .tablecard .felt .board,.tablecard.nine .felt .board{top:29%!important}
+  /* Board gets its own clean upper-center zone */
   .tablecard .felt .street,.tablecard.nine .felt .street{top:8%!important}
+  .tablecard .felt .board,.tablecard.nine .felt .board{top:27%!important;gap:5px!important}
 
-  /* Confirmed MAIN/SIDE pots: compact and forced below the board */
-  #potBank .potpile{
-    top:69%!important;
-    min-width:64px!important;
-    max-width:72px!important;
-    padding:3px 4px!important;
-    border-radius:8px!important;
-  }
-  #potBank .potpile .chipvisual{height:16px!important;margin-bottom:0!important}
-  #potBank .potpile .chipvisual i{width:15px!important;height:15px!important;border-width:2px!important;margin-left:-5px!important}
-  #potBank .potpile b{font-size:5px!important;line-height:1!important}
-  #potBank .potpile strong{font-size:10px!important;line-height:1.05!important;margin-top:1px!important}
-  #potBank .potpile small{font-size:4.5px!important;line-height:1.05!important;margin-top:1px!important}
+  /* The temporary central pot must never cover the board */
+  #potBank .currentpot{top:61%!important;min-width:138px!important;padding:6px 10px!important;border-radius:12px!important;z-index:8!important}
+  #potBank .currentpot small{font-size:7px!important}
+  #potBank .currentpot strong{font-size:20px!important;line-height:1.05!important;margin:2px 0!important}
+  #potBank .currentpot span{font-size:7px!important;line-height:1.15!important}
+  #potBank .splitnotice{top:51%!important;max-width:58vw!important;white-space:normal!important;text-align:center!important;font-size:7px!important;padding:4px 8px!important}
 
-  /* 1 / 2 / 3 pot layouts, always on the lower rail */
-  #potBank .potpile:only-child{left:50%!important;top:69%!important}
-  #potBank .potpile:nth-last-child(2):first-child{left:43%!important;top:69%!important}
-  #potBank .potpile:nth-child(2):last-child{left:57%!important;top:69%!important}
-  #potBank .potpile:nth-last-child(3):first-child{left:36%!important;top:69%!important}
-  #potBank .potpile:nth-child(2):nth-last-child(2){left:50%!important;top:69%!important}
-  #potBank .potpile:nth-child(3):last-child{left:64%!important;top:69%!important}
+  /* Betting chips and amounts: larger, readable at a glance */
+  .tablecard .betmarker,.tablecard.nine .betmarker{transform:scale(.95)!important;transform-origin:center!important;min-width:74px!important;gap:4px!important}
+  .tablecard .betstack,.tablecard.nine .betstack{width:38px!important;height:31px!important}
+  .tablecard .betstack i,.tablecard.nine .betstack i{width:30px!important;height:11px!important;left:4px!important}
+  .tablecard .betamt,.tablecard.nine .betamt{font-size:10px!important;line-height:1!important;padding:4px 7px!important;font-variant-numeric:tabular-nums!important}
 
-  /* Practical-mode drop zones: same lower lane, never over the board */
-  .tablecard.practical-split .dragpotzone,
-  .tablecard.nine.practical-split .dragpotzone{
-    top:62%!important;
-    width:76px!important;
-    min-height:47px!important;
-    padding:3px 4px!important;
-    border-radius:8px!important;
-  }
-  .tablecard.practical-split .dragpotzone b{font-size:6px!important;line-height:1!important}
-  .tablecard.practical-split .dragpotzone strong{font-size:11px!important;line-height:1.05!important}
-  .tablecard.practical-split .dragpotzone small,
-  .tablecard.practical-split .dragpotzone .methodhint,
-  .tablecard.practical-split .dragpotzone .methodbadge{font-size:4.5px!important;line-height:1.05!important}
-  .dragpotlayer.pots-2 .dragpotzone.main{left:43%!important}
-  .dragpotlayer.pots-2 .dragpotzone.side1{left:57%!important}
-  .dragpotlayer.pots-3 .dragpotzone.main{left:36%!important}
-  .dragpotlayer.pots-3 .dragpotzone.side1{left:50%!important}
-  .dragpotlayer.pots-3 .dragpotzone.side2{left:64%!important}
+  /* Confirmed MAIN/SIDE pots live in a lower rail */
+  #potBank .potpile{top:70%!important;min-width:84px!important;max-width:96px!important;padding:4px 5px!important;border-radius:9px!important}
+  #potBank .potpile .chipvisual{height:19px!important;margin-bottom:1px!important}
+  #potBank .potpile .chipvisual i{width:18px!important;height:18px!important;border-width:2px!important;margin-left:-6px!important}
+  #potBank .potpile b{font-size:6px!important;line-height:1!important}
+  #potBank .potpile strong{font-size:13px!important;line-height:1.05!important;margin-top:1px!important}
+  #potBank .potpile small{font-size:5px!important;line-height:1.05!important;margin-top:1px!important}
+  #potBank .potpile:only-child{left:50%!important}
+  #potBank .potpile:nth-last-child(2):first-child{left:43%!important}
+  #potBank .potpile:nth-child(2):last-child{left:57%!important}
+  #potBank .potpile:nth-last-child(3):first-child{left:36%!important}
+  #potBank .potpile:nth-child(2):nth-last-child(2){left:50%!important}
+  #potBank .potpile:nth-child(3):last-child{left:64%!important}
+
+  /* Practical-mode drop zones use the same lower lane */
+  .tablecard.practical-split .dragpotzone,.tablecard.nine.practical-split .dragpotzone{top:64%!important;width:82px!important;min-height:50px!important;padding:4px!important;border-radius:9px!important}
+  .tablecard.practical-split .dragpotzone b{font-size:7px!important}
+  .tablecard.practical-split .dragpotzone strong{font-size:12px!important}
+  .tablecard.practical-split .dragpotzone small,.tablecard.practical-split .dragpotzone .methodhint,.tablecard.practical-split .dragpotzone .methodbadge{font-size:5px!important}
+  .dragpotlayer.pots-2 .dragpotzone.main{left:43%!important}.dragpotlayer.pots-2 .dragpotzone.side1{left:57%!important}
+  .dragpotlayer.pots-3 .dragpotzone.main{left:36%!important}.dragpotlayer.pots-3 .dragpotzone.side1{left:50%!important}.dragpotlayer.pots-3 .dragpotzone.side2{left:64%!important}
+
+  /* Immediate answer result indicator */
+  #judgeToast{position:fixed;left:50%;top:50px;transform:translateX(-50%) translateY(-8px);opacity:0;pointer-events:none;z-index:500;min-width:150px;max-width:60vw;padding:9px 16px;border-radius:12px;border:1px solid #415163;background:#15202bf2;color:#fff;box-shadow:0 12px 32px #000a;text-align:center;transition:opacity .18s ease,transform .18s ease}
+  #judgeToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #judgeToast.ok{border-color:#3f9a70;background:#103c2af2}.judgetoast.bad,#judgeToast.bad{border-color:#b45462;background:#481f27f2}
+  #judgeToast b{display:block;font-size:16px;line-height:1.1}#judgeToast span{display:block;margin-top:3px;font-size:10px}
 }
