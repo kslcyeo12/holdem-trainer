@@ -1,0 +1,73 @@
+/* Mobile M2: Safari landscape layout tuned for low-height phone viewports */
+@media (pointer:coarse) and (orientation:landscape){
+  html,body{overflow:hidden!important}
+  .app{height:100dvh!important;padding:2px 3px calc(46px + env(safe-area-inset-bottom))!important}
+  .top{height:30px!important;min-height:30px!important;margin:0 0 2px!important;padding:0 5px!important;gap:4px!important}
+  .brand h1{font-size:11px!important;line-height:1!important}.brand p{display:none!important}
+  .stats{gap:2px!important;flex-wrap:nowrap!important}.pill{padding:3px 5px!important;font-size:7px!important;white-space:nowrap!important}
+  .layout{height:calc(100dvh - 80px)!important;min-height:0!important}
+  .tablecard,.tablecard.nine{height:100%!important;min-height:0!important;border-radius:9px!important;overflow:hidden!important}
+  .tablecard .felt,.tablecard.nine .felt{top:50%!important;width:88%!important;height:66%!important;max-height:none!important;border-width:7px!important;box-shadow:inset 0 0 0 2px #9d7548,inset 0 0 26px #04170f,0 10px 24px #0008!important}
+  .tablecard .felt .street,.tablecard.nine .felt .street{top:10%!important;font-size:7px!important}
+  .tablecard .felt .board,.tablecard.nine .felt .board{top:31%!important;gap:3px!important}
+  .tablecard .felt .boardcard,.tablecard.nine .felt .boardcard{width:32px!important;height:44px!important;font-size:13px!important;border-radius:5px!important}
+  .tablecard .potlabel{min-width:90px!important;padding:4px 7px!important;border-radius:8px!important}.tablecard .potlabel strong{font-size:16px!important}.tablecard .potlabel small,.tablecard .potlabel span{font-size:6px!important}
+  .tablecard .potchip{width:19px!important;height:19px!important;border-width:3px!important}.tablecard .potchips{height:22px!important}
+
+  /* Compact player cards */
+  .tablecard .seat,.tablecard:not(.nine) .seat{width:72px!important;padding:3px!important;border-radius:7px!important;box-shadow:0 5px 12px #0008!important}
+  .tablecard.nine .seat{width:60px!important;padding:3px!important;border-radius:7px!important}
+  .tablecard .seathead{gap:2px!important}.tablecard .seatname{font-size:7px!important}.tablecard .pos{font-size:5px!important;padding:1px 2px!important}
+  .tablecard .holecards{gap:2px!important;margin-top:2px!important}
+  .tablecard .hole,.tablecard:not(.nine) .hole{width:16px!important;height:22px!important;border-radius:3px!important}
+  .tablecard .hole.show,.tablecard:not(.nine) .hole.show{width:19px!important;height:26px!important;font-size:8px!important}
+  .tablecard.nine .hole{width:14px!important;height:19px!important}.tablecard.nine .hole.show{width:17px!important;height:23px!important;font-size:7px!important}
+  .tablecard .stack,.tablecard.nine .stack{font-size:5px!important;margin-top:2px!important}.tablecard .stack b,.tablecard.nine .stack b{font-size:7px!important}
+  .tablecard .cumline,.tablecard .rankline{font-size:5px!important;min-height:0!important;margin-top:1px!important;line-height:1.05!important}
+  .tablecard .act,.tablecard.nine .act{font-size:6px!important;height:8px!important;line-height:8px!important;margin-top:1px!important}
+
+  /* 6MAX fixed mobile-safe seat zones */
+  .tablecard:not(.nine) #seats .seat:nth-child(1){left:calc(50% - 36px)!important;top:0!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(2){left:auto!important;right:2px!important;top:12%!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(3){left:auto!important;right:2px!important;top:58%!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(4){left:calc(50% - 36px)!important;top:auto!important;bottom:1px!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(5){left:2px!important;top:58%!important}
+  .tablecard:not(.nine) #seats .seat:nth-child(6){left:2px!important;top:12%!important}
+
+  /* 9MAX fixed mobile-safe seat zones */
+  .tablecard.nine #seats .seat:nth-child(1){left:calc(50% - 30px)!important;top:0!important}
+  .tablecard.nine #seats .seat:nth-child(2){left:auto!important;right:16%!important;top:2%!important}
+  .tablecard.nine #seats .seat:nth-child(3){left:auto!important;right:1px!important;top:27%!important}
+  .tablecard.nine #seats .seat:nth-child(4){left:auto!important;right:1px!important;top:58%!important}
+  .tablecard.nine #seats .seat:nth-child(5){left:auto!important;right:20%!important;top:auto!important;bottom:1px!important}
+  .tablecard.nine #seats .seat:nth-child(6){left:20%!important;top:auto!important;bottom:1px!important}
+  .tablecard.nine #seats .seat:nth-child(7){left:1px!important;top:58%!important}
+  .tablecard.nine #seats .seat:nth-child(8){left:1px!important;top:27%!important}
+  .tablecard.nine #seats .seat:nth-child(9){left:16%!important;top:2%!important}
+
+  /* Bet chips stay inside the felt, away from seat cards */
+  .tablecard .betmarker,.tablecard.nine .betmarker{transform:scale(.58)!important;transform-origin:center!important;min-width:44px!important;gap:2px!important}
+  .tablecard .betamt,.tablecard.nine .betamt{font-size:7px!important;padding:2px 4px!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(1){left:calc(50% - 22px)!important;top:20%!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(2){left:auto!important;right:20%!important;top:28%!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(3){left:auto!important;right:20%!important;top:61%!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(4){left:calc(50% - 22px)!important;top:auto!important;bottom:18%!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(5){left:20%!important;top:61%!important}
+  .tablecard:not(.nine) #betmarkers .betmarker:nth-child(6){left:20%!important;top:28%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(1){left:calc(50% - 22px)!important;top:19%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(2){left:auto!important;right:28%!important;top:21%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(3){left:auto!important;right:16%!important;top:35%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(4){left:auto!important;right:16%!important;top:62%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(5){left:auto!important;right:29%!important;top:auto!important;bottom:17%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(6){left:29%!important;top:auto!important;bottom:17%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(7){left:16%!important;top:62%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(8){left:16%!important;top:35%!important}
+  .tablecard.nine #betmarkers .betmarker:nth-child(9){left:28%!important;top:21%!important}
+
+  .tablecard .potpile{min-width:66px!important;max-width:74px!important;padding:3px 4px!important}.tablecard .potpile strong{font-size:11px!important}.tablecard .potpile b{font-size:5px!important}.tablecard .potpile small{font-size:4.5px!important}
+  .tablecard.practical-split .dragpotzone{width:72px!important;min-height:46px!important;top:55%!important;padding:4px!important}.dragpotzone strong{font-size:11px!important}
+  .banner{display:none!important}
+  .mobilebar{height:calc(44px + env(safe-area-inset-bottom))!important;padding:3px 6px env(safe-area-inset-bottom)!important;gap:4px!important}
+  .mobilebar button{font-size:9px!important;border-radius:7px!important}
+  .side{bottom:calc(46px + env(safe-area-inset-bottom))!important;max-height:78dvh!important}
+}
