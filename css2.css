@@ -1,0 +1,51 @@
+/* V17 · 중앙 POT 흐름을 실제 테이블처럼 분리 표시 */
+.pothud{position:absolute;left:50%;top:45.5%;transform:translate(-50%,-50%);z-index:8;display:flex;gap:5px;align-items:center;padding:5px 7px;border-radius:12px;background:#07110edb;border:1px solid #ffffff22;box-shadow:0 6px 16px #0006;white-space:nowrap}
+.pothud .ph{min-width:70px;text-align:center;padding:2px 5px;border-right:1px solid #ffffff16}.pothud .ph:last-child{border-right:0}.pothud small{display:block;font-size:7px;color:#87988f;letter-spacing:.05em}.pothud strong{display:block;font-size:13px;color:#fff;line-height:1.2}.pothud .front strong{color:#f4cf72}.pothud .total strong{color:#9fd9bf}
+.splitnotice{position:absolute;left:50%;top:54.5%;transform:translate(-50%,-50%);z-index:8;border:1px solid #e1bd5d88;background:#20180ce8;color:#ffe4a1;border-radius:999px;padding:6px 12px;font-size:10px;font-weight:900;box-shadow:0 6px 16px #0008;white-space:nowrap}
+.potpile{border-width:1px}.potpile.mainpot{border-color:#e3c46899}.potpile.side1{border-color:#7eaddb99}.potpile.side2{border-color:#d18aa599}.potpile.mainpot .chipvisual i{border-color:#f0cf70}.potpile.side1 .chipvisual i{border-color:#8bb8e3}.potpile.side2 .chipvisual i{border-color:#dc9ab2}.potpile.centerpot{}
+.potpile small{white-space:normal;line-height:1.15}
+@media(max-width:730px){.pothud{top:46%;gap:2px;padding:4px}.pothud .ph{min-width:58px;padding:1px 3px}.pothud strong{font-size:11px}.pothud small{font-size:6px}.splitnotice{font-size:8px;padding:5px 9px}}
+
+@keyframes potPop{from{transform:translateY(5px);opacity:.25}to{transform:none;opacity:1}}
+.hole.show{width:32px;height:44px;background:#f8f5ec;border-color:#d6d1c5;color:#121212;display:grid;place-items:center;font-weight:900;font-size:14px}.hole.show.red{color:#b51d2d}.seat .rankline{font-size:9px;color:#98a8b6;margin-top:4px;min-height:12px}.seat.winner{border-color:#f0cf70;box-shadow:0 0 0 2px #f0cf7038,0 12px 28px #0008}.seat.second{border-color:#9eb6d1;box-shadow:0 0 0 2px #9eb6d128,0 12px 28px #0008}
+.award{font-size:10px;background:#07120e;border:1px solid #274537;border-radius:999px;padding:5px 8px;color:#c9d6cf}.award b{color:#f0d079}
+.quizsingle{display:grid;grid-template-columns:1fr;gap:6px}.hidden{display:none!important}.potstatus{font-size:9px;color:#8fa198;text-align:center;margin-top:3px}.tip .em{color:#fff;font-weight:800}
+@media(max-width:730px){.potpile{min-width:78px;padding:5px}.potpile strong{font-size:15px}.showdownbox{top:74%;}.hole.show{width:22px;height:31px;font-size:10px}}
+
+.showdownquiz{margin-top:8px}.showpick{display:grid;grid-template-columns:1fr 1fr;gap:7px}.showpick.one{grid-template-columns:1fr}.showdownquiz label{display:block;font-size:9px;color:#84919e}.showdownquiz select,.showdownquiz input{width:100%;margin-top:3px;background:#091017;color:#fff;border:1px solid #39495b;border-radius:9px;padding:9px}.potwinnerrows{display:flex;flex-direction:column;gap:6px;margin-top:8px}.potwinnerrow{display:grid;grid-template-columns:115px 1fr;gap:7px;align-items:center;background:#0b1219;border:1px solid #263746;border-radius:10px;padding:7px}.potwinnerrow b{font-size:10px;color:#efd079}.payouttitle{font-size:10px;color:#c4ced7;font-weight:900;margin-top:10px}.payoutgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}.payoutitem{background:#0b1219;border:1px solid #263746;border-radius:9px;padding:6px}.payoutitem span{font-size:10px;font-weight:900;color:#fff}.payoutitem input{text-align:center;font-size:15px;font-weight:900}.resultpayout{margin-top:7px;border-top:1px solid #283746;padding-top:7px;display:flex;gap:6px;flex-wrap:wrap}.resultpayout span{font-size:10px;background:#151d27;border:1px solid #344659;border-radius:999px;padding:5px 8px}.resultpayout b{color:#efd079}.showdownhint{font-size:9px;color:#7f8e9d;margin-top:6px;line-height:1.45}.winnercheckgroup{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}.winnerchoice{display:flex!important;align-items:center;gap:4px;border:1px solid #3a4a5b;border-radius:8px;padding:6px 8px!important;background:#0a1219;color:#dce5ec!important;cursor:pointer;font-size:9px!important}.winnerchoice:has(input:checked){border-color:#d4b755;background:#2a220e;color:#ffe6a0!important}.winnerchoice input{width:auto!important;margin:0!important;accent-color:#d6b64f}.chophint{margin-top:6px;font-size:8px;color:#91a0ad;line-height:1.45}.chopbadge{display:inline-block;margin-left:5px;padding:2px 5px;border-radius:999px;border:1px solid #8bb8e366;color:#9fd0ff;font-size:7px;font-weight:900}.potwinnerrow.choprow{grid-template-columns:115px 1fr}.potwinnerrow .winnercheckgroup{margin-top:0}
+
+/* V9: 완전 랜덤 실전 게임 엔진 + V8 쇼다운 집중 모드 */
+.side.showdown-focus #gameControlCard,.side.showdown-focus #handLogCard,.side.showdown-focus #tipCard{display:none!important}
+.side.showdown-focus{display:block}
+.side.showdown-focus #quiz{display:block!important}
+.side.showdown-focus #quiz .section{margin-bottom:8px}
+
+/* V18 · 교육용 단순화 */
+.pothud,.splitnotice{display:none!important}
+.potbank{position:absolute;inset:0;z-index:6;pointer-events:none}
+.currentpot{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);min-width:160px;text-align:center;background:#07120ee8;border:1px solid #ffffff2b;border-radius:15px;padding:8px 14px;box-shadow:0 8px 20px #0007}
+.currentpot small{display:block;font-size:8px;color:#91a198;letter-spacing:.08em}.currentpot strong{display:block;color:#ffe29a;font-size:24px;line-height:1.1;margin:2px 0}.currentpot span{display:block;color:#95a49c;font-size:8px}
+.currentpot.quizpot{border-color:#e4c15e99;background:#21190de8}.currentpot.quizpot strong{color:#fff0a9}
+.totalbadge{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);background:#07120ed9;border:1px solid #ffffff22;border-radius:999px;padding:5px 10px;font-size:9px;color:#a7b4ad;white-space:nowrap}.totalbadge b{color:#ffe29a;font-size:12px}
+.potpile{min-width:92px;max-width:108px;padding:5px 7px}.potpile strong{font-size:17px}.potpile small{font-size:7px}
+.trainingflow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:9px}.flowstep{border:1px solid #2b3948;background:#0a1118;border-radius:9px;padding:8px 5px;text-align:center;color:#75828e;font-size:9px;font-weight:900}.flowstep b{display:block;font-size:15px;margin-bottom:1px}.flowstep.active{border-color:#ddbd64;background:#2b2415;color:#ffe5a0}.flowstep.done{border-color:#315c49;background:#10281f;color:#91c7ad}
+.guidebox{background:#0b1219;border:1px solid #263644;border-radius:10px;padding:9px 10px;font-size:10px;line-height:1.5;color:#b6c1ca}.guidebox b{color:#efd079}
+.splitguide{margin:8px 0;background:#0b1219;border-left:3px solid #d5b45f;border-radius:8px;padding:8px 9px;font-size:10px;line-height:1.5;color:#aebac4}.splitguide b{color:#f0d079}
+.potinputs.two{grid-template-columns:1fr 1fr}.potinputs.one{grid-template-columns:1fr}.potinputs label.hiddenfield{display:none}
+#handLogCard,#tipCard{display:none!important}
+.side.showdown-focus #flowCard{display:block!important}
+.side.showdown-focus #gameControlCard{display:none!important}
+.side.showdown-focus #quiz{display:block!important}
+.quiztitle{font-size:20px}.quizsub{font-size:12px;line-height:1.55}
+.feedback .explain{display:block;margin-top:6px;padding-top:6px;border-top:1px solid #ffffff18;color:#c1ccd4}
+@media(max-width:730px){.currentpot{top:51%;min-width:135px;padding:6px 10px}.currentpot strong{font-size:20px}.trainingflow{gap:3px}.flowstep{padding:6px 2px;font-size:8px}.flowstep b{font-size:13px}}
+
+/* V18.3 · MAIN/SIDE 계산 시 플레이어별 누적 투입액을 명확히 표시 */
+.cumline{display:none;margin-top:3px;padding:3px 5px;border-radius:7px;background:#211a0d;border:1px solid #d8b65a55;color:#ffe3a0;font-size:9px;font-weight:900;text-align:center}
+.cumline.show{display:block}
+.cumline.folded{background:#181b1f;border-color:#5b626b;color:#9aa3ad}
+.cumlegend{margin:6px 0 8px;padding:8px 9px;border-radius:10px;background:#0b1219;border:1px solid #2e4050;font-size:10px;line-height:1.5;color:#b7c2cc}
+.cumlegend b{color:#ffe09a}.cumlegend .dead{color:#909aa4}
+
+/* V20.7 dual training modes + drag practical */
+.modebar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.modebtn{border:1px solid #35475a;background:#0d151d;color:#aab6c2;border-radius:12px;padding:11px 10px;cursor:pointer;font-weight:900;line-height:1.25}.modebtn b{display:block;font-size:16px;color:#fff}.modebtn small{display:block;font-size:9px;color:#8292a0;margin-top:3px;font-weight:700}.modebtn.active{border-color:#d8b957;background:#2a220f;color:#ffe39a;box-shadow:0 0 0 1px #d8b95733}.modebtn.active b{color:#ffe39a}.practicalwrap{margin-top:8px;background:#0a1118;border:1px solid #2a3948;border-radius:12px;padding:10px}.practicalstep{border:1px solid #2b3948;background:#0e161f;border-radius:10px;padding:9px;margin-top:7px}.practicalstep.done{border-color:#37765c;background:#103126}.practicalstep.active{border-color:#d6b457;background:#211b0e}.practicalstep b{font-size:11px;color:#fff}.practicalstep span{display:block;font-size:9px;color:#98a6b2;margin-top:3px;line-height:1.45}
