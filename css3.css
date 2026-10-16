@@ -1,0 +1,99 @@
+.practicalcontrols{display:grid;grid-template-columns:1fr;gap:7px;margin-top:9px}.practicalcontrols select{width:100%;background:#091017;color:#fff;border:1px solid #39495b;border-radius:9px;padding:9px}.practicalbtn{width:100%;border:1px solid #d0ae54;background:#2a210d;color:#ffe39a;border-radius:10px;padding:10px;font-weight:900;cursor:pointer}.practicalbtn:disabled{opacity:.45;cursor:default}.practicalhint{font-size:9px;color:#8fa0ad;line-height:1.5;margin-top:7px}.practicalresult{margin-top:8px;padding:8px;border-radius:9px;background:#0d1a16;border:1px solid #315544;font-size:10px;line-height:1.5;color:#c9dbd2}.modebadge{font-size:9px;border:1px solid #3b4a5b;border-radius:999px;padding:4px 8px;color:#aebbc7}.modebadge.calc{border-color:#c8aa52;color:#efd37d}.modebadge.practical{border-color:#6ca884;color:#a9e0bf}
+
+/* V20.4 · 실전 칩 드래그 정리 */
+.betmarker.drag-ready{pointer-events:auto!important;cursor:grab;filter:drop-shadow(0 0 7px #e4c46355)}
+.betmarker.drag-ready:active{cursor:grabbing;transform:scale(1.05)}
+.betmarker.drag-empty{opacity:.25;pointer-events:none!important}
+.dragpotlayer{position:absolute;inset:0;z-index:8;pointer-events:none}
+.dragpotzone{position:absolute;transform:translate(-50%,-50%);width:124px;min-height:78px;border:2px dashed #7f91a4;border-radius:16px;background:#09130fda;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:auto;transition:.15s;box-shadow:0 8px 20px #0006}
+.dragpotzone.main{left:44%;top:56%;border-color:#e2c162aa}.dragpotzone.side1{left:57%;top:56%;border-color:#7baddcaa}.dragpotzone.side2{left:50%;top:66%;border-color:#d38ba5aa}
+.dragpotzone.over{transform:translate(-50%,-50%) scale(1.06);background:#182419;border-style:solid;box-shadow:0 0 0 4px #e6c76622,0 8px 20px #0008}
+.dragpotzone b{font-size:11px;color:#f1d27a;letter-spacing:.05em}.dragpotzone strong{font-size:19px;color:#fff;margin-top:2px}.dragpotzone small{font-size:8px;color:#92a199;margin-top:3px;line-height:1.3}.dragpotzone .moved{color:#9fd8bd}.draghelp{margin:7px 0;padding:9px;border:1px solid #3b4c5d;border-radius:10px;background:#0a1219;color:#b9c5cf;font-size:10px;line-height:1.5}.draghelp b{color:#f0d27d}.dragactions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.dragactions button{border:1px solid #3d4e60;background:#151f29;color:#dbe4eb;border-radius:9px;padding:9px;font-weight:800;cursor:pointer}.dragactions button.primarydrag{border-color:#d2b259;background:#2a210d;color:#ffe39a}
+.dragmovehistory{margin-top:7px;max-height:105px;overflow:auto;display:flex;flex-direction:column;gap:4px}.dragmove{font-size:9px;padding:5px 7px;border:1px solid #283746;border-radius:7px;background:#0b1219;color:#b8c4cd}.dragmove b{color:#f0cf78}
+.dragmodalback{position:fixed;inset:0;background:#0009;z-index:9999;display:none;align-items:center;justify-content:center}.dragmodalback.show{display:flex}.dragmodal{width:min(92vw,360px);background:#111a23;border:1px solid #4a5b6e;border-radius:16px;padding:16px;box-shadow:0 22px 70px #000b}.dragmodal h3{margin:0 0 5px;font-size:17px}.dragmodal p{margin:0 0 11px;color:#9eadba;font-size:11px;line-height:1.45}.dragmodal input{width:100%;background:#071018;border:1px solid #536477;color:#fff;border-radius:10px;padding:12px;text-align:center;font-size:22px;font-weight:900}.dragmodal .modalbuttons{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.dragmodal button{border:1px solid #3e5062;background:#1b2632;color:#fff;border-radius:9px;padding:10px;font-weight:900;cursor:pointer}.dragmodal button.ok{background:#d3b252;color:#16110a;border:0}.practicalcontrols select,#practicalActionBtn{display:none!important}
+@media(max-width:730px){.dragpotzone{width:104px;min-height:68px}.dragpotzone.main{left:40%;top:50%}.dragpotzone.side1{left:62%;top:50%}.dragpotzone.side2{left:51%;top:64%}.dragpotzone strong{font-size:15px}}
+
+/* V20.4 practical drag UI cleanup */
+.dragpotlayer{position:absolute;inset:0;z-index:12;pointer-events:none}
+.dragpotzone{width:128px;min-height:78px;padding:8px 6px;background:#07120eef;box-shadow:0 8px 22px #0009}
+.dragpotzone.main{left:35%;top:49%}
+.dragpotzone.side1{left:50%;top:49%}
+.dragpotzone.side2{left:65%;top:49%}
+.dragpotzone strong{font-size:18px}
+.tablecard.practical-split #potBank{visibility:hidden}
+.tablecard.practical-split .board{z-index:6}
+.tablecard.practical-split .dragpotlayer{z-index:12}
+.tablecard.practical-split .banner{z-index:13}
+@media(max-width:1100px){.dragpotzone{width:112px}.dragpotzone.main{left:34%;top:50%}.dragpotzone.side1{left:50%;top:50%}.dragpotzone.side2{left:66%;top:50%}}
+@media(max-width:730px){.dragpotzone{width:92px;min-height:64px;padding:5px 4px}.dragpotzone.main{left:31%;top:49%}.dragpotzone.side1{left:50%;top:49%}.dragpotzone.side2{left:69%;top:49%}.dragpotzone b{font-size:9px}.dragpotzone strong{font-size:14px}.dragpotzone small{font-size:7px}}
+
+/* V20.10 · 정계산/역계산 듀얼 입력 */
+.dragpotzone{cursor:pointer}
+.dragpotzone.reverse-active{border-style:solid;box-shadow:0 0 0 3px #79b6df20,0 8px 22px #0009}
+.dragpotzone .methodhint{display:block;margin-top:4px;font-size:7px;color:#a6b5bf}
+.dragpotzone .reversevalue{color:#8fd2ff}
+.methodbadge{display:inline-block;margin-top:5px;padding:3px 7px;border-radius:999px;font-size:8px;font-weight:900;border:1px solid #425466;background:#111b25;color:#c8d5df}
+.methodbadge.forward{border-color:#c9ab5380;color:#f0d27d}.methodbadge.reverse{border-color:#6ca8d780;color:#9ed4ff}
+
+/* V20.4 · POT별 혼합 계산 + 보드 비가림 전용 팟 레인 */
+.tablecard .potpile{z-index:9;min-width:104px;max-width:116px;padding:5px 7px}
+.tablecard .potpile strong{font-size:17px}
+.tablecard .potpile small{font-size:7px}
+.dragpotzone{top:51%!important;width:124px;min-height:74px}
+.dragpotzone.main{left:35%!important}.dragpotzone.side1{left:50%!important}.dragpotzone.side2{left:65%!important}
+@media(max-width:1100px){.dragpotzone.main{left:34%!important}.dragpotzone.side1{left:50%!important}.dragpotzone.side2{left:66%!important}}
+
+/* V20.4 · 16:9 비가림 레이아웃 */
+.app{max-width:1600px}
+.layout{grid-template-columns:minmax(0,1fr) 350px}
+.tablecard{height:700px;min-height:700px;overflow:hidden}
+.felt{top:43%;width:min(82%,920px);height:410px}
+.felt .street{top:14%}
+.felt .board{top:31%}
+.seat{width:138px;padding:8px}
+.banner{bottom:7px;width:min(90%,900px);padding:8px 12px}
+/* 실전 분리 중에는 보드와 팟 작업대를 최우선으로 확보 */
+.tablecard.practical-split .felt .board{top:28%}
+.tablecard.practical-split .dragpotzone{top:45.5%!important;width:110px;min-height:64px;padding:6px 5px}
+.tablecard.practical-split .dragpotzone b{font-size:10px}
+.tablecard.practical-split .dragpotzone strong{font-size:16px}
+.tablecard.practical-split .dragpotzone small{font-size:7px;line-height:1.2}
+.tablecard.practical-split .dragpotzone .methodhint{font-size:6px;margin-top:2px}
+.tablecard.practical-split .dragpotzone .methodbadge{font-size:7px;margin-top:3px;padding:2px 6px}
+.dragpotlayer.pots-2 .dragpotzone.main{left:44%!important}
+.dragpotlayer.pots-2 .dragpotzone.side1{left:56%!important}
+.dragpotlayer.pots-3 .dragpotzone.main{left:38%!important}
+.dragpotlayer.pots-3 .dragpotzone.side1{left:50%!important}
+.dragpotlayer.pots-3 .dragpotzone.side2{left:62%!important}
+/* 확정 팟 카드도 작고 명확하게 */
+.tablecard .potpile{min-width:92px;max-width:102px;padding:5px 6px}
+.tablecard .potpile strong{font-size:16px}
+.tablecard .potpile b{font-size:8px}
+.tablecard .potpile small{font-size:6px}
+@media(max-width:1200px){
+ .layout{grid-template-columns:minmax(0,1fr) 330px}
+ .tablecard{height:680px;min-height:680px}
+ .felt{width:80%;height:390px}
+ .seat{width:128px}
+ .tablecard.practical-split .dragpotzone{width:100px;min-height:60px}
+}
+@media(max-width:1040px){
+ .layout{grid-template-columns:1fr}
+ .tablecard{height:680px;min-height:680px}
+}
+
+/* V20.7 · 카드 가독성 확대 */
+.seat{width:142px!important}
+.holecards{gap:6px!important;margin-top:7px!important}
+.hole{width:30px!important;height:42px!important}
+.hole.show{width:38px!important;height:52px!important;font-size:16px!important;border-radius:6px!important}
+.felt .board{gap:9px!important}
+.felt .boardcard{width:56px!important;height:78px!important;font-size:22px!important;border-radius:9px!important}
+@media(max-width:1200px){.seat{width:136px!important}.hole.show{width:35px!important;height:48px!important;font-size:15px!important}.hole{width:28px!important;height:39px!important}.felt .boardcard{width:52px!important;height:73px!important;font-size:21px!important}}
+@media(max-width:730px){.seat{width:112px!important}.hole{width:22px!important;height:30px!important}.hole.show{width:27px!important;height:37px!important;font-size:11px!important}.felt .boardcard{width:39px!important;height:55px!important;font-size:16px!important}}
+
+/* V20.7 · 9MAX 자동 축소 레이아웃 */
+.tablecard.nine{height:790px}
+.tablecard.nine .felt{width:min(88%,980px);height:475px;top:46%}
+.tablecard.nine .seat{width:112px!important;padding:6px!important;border-radius:12px}
+.tablecard.nine .seatname{font-size:11px}.tablecard.nine .pos{font-size:8px}
