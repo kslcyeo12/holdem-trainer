@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>홀덤 딜러 MAIN/SIDE 트레이너 V20.18</title>
+<link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#0b1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="홀덤 팟 트레이너">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand"><h1>홀덤 딜러 <b>MAIN/SIDE 모바일 트레이너 M1</b></h1><p>모바일 전용 · PC와 같은 기능을 터치 중심으로 사용</p></div>
+    <div class="toppracticalactions" id="topPracticalActions">
+      <button id="topResetBtn">처음부터 다시</button>
+      <button class="topcheck" id="topCheckBtn">팟 정리 정답 확인</button>
+      <button class="topcontinue" id="topContinueBtn" style="display:none">칩 정리 후 계속 ▶</button>
+    </div>
+    <div class="stats"><div class="pill">핸드 <b id="handNo">0</b></div><div class="pill">정답률 <b id="rate">0%</b></div><div class="pill">연속 <b id="streak">0</b></div><div class="pill">평균 <b id="avg">0.0초</b></div></div>
+  </div>
+  <div class="layout">
+    <div class="card tablecard">
+      <div class="felt">
+        <div class="street" id="street">READY</div>
+        <div class="board" id="board"></div>
+        <div class="potbank" id="potBank"><div class="potempty">확정된 POT이 여기에 쌓입니다</div></div>
+      </div>
+      <div id="seats"></div>
+      <div id="betmarkers"></div>
+      <div class="banner"><div><div class="main" id="actionMain">블라인드를 설정하고 새 핸드를 시작하세요</div><div class="sub" id="actionSub">프리플랍 → 플랍 → 턴 → 리버 → 쇼다운까지 한 판이 이어집니다.</div></div><div class="round" id="round">-</div></div>
+    </div>
+
+    <div class="side" id="sidePanel">
+      <div class="modebar" id="modeBar">
+        <button class="modebtn active" id="modeCalc"><b>① 계산 훈련</b><small>MAIN / SIDE 금액 직접 계산</small></button>
+        <button class="modebtn" id="modePractical"><b>② 실전 칩 정리</b><small>올인 기준으로 칩을 실제처럼 분리</small></button>
+      </div>
+      <div class="card" id="gameControlCard">
+        <div class="section"><b>훈련 시작</b><span><span class="modebadge calc" id="modeBadge">계산 훈련</span> · <span id="status">대기</span></span></div>
+        <div class="row2">
+          <div class="field"><label>SB · 칩</label><input id="sbInput" type="number" min="1" step="100" value="10000"></div>
+          <div class="field"><label>BB · 칩</label><input id="bbInput" type="number" min="1" step="100" value="20000"></div>
+        </div>
+        <div class="field" style="margin-top:7px"><label>테이블 인원</label><select id="playerCount"><option value="6" selected>6명 · 6MAX</option><option value="9">9명 · 9MAX</option></select></div>
+        <button class="primary" id="startBtn" style="margin-top:9px">새 훈련 핸드 시작</button>
+        <button class="secondary" id="nextBtn">다음 액션 ▶</button>
+        <div class="toggle"><span>자동 진행</span><input type="checkbox" id="auto" checked></div>
+      </div>
+
+      <div class="card" id="flowCard">
+        <div class="section"><b>학습 진행</b><span>MAIN / SIDE 집중</span></div>
+        <div class="trainingflow">
+          <div class="flowstep active" id="stepPlay"><b>1</b>게임 진행</div>
+          <div class="flowstep" id="stepSplit"><b>2</b>팟 분리</div>
+          <div class="flowstep" id="stepShow"><b>3</b>쇼다운</div>
+        </div>
+        <div class="guidebox" id="guideText"><b>지금 할 일</b><br>액션과 좌석 앞 칩을 따라가세요. 일반 POT은 프로그램이 자동으로 계산합니다.</div>
+      </div>
+
+      <div class="card quiz" id="quiz">
+        <div class="section"><b id="quizSectionTitle">MAIN / SIDE POT 계산</b><span id="quizTimer">0.0초</span></div>
+        <div class="quiztitle" id="quizTitle"></div>
+        <div class="quizsub" id="quizSub"></div>
+        <div class="splitguide hidden" id="splitGuide"><b>계산 순서</b> · 가장 작은 올인 총액까지 MAIN → 그 초과분을 SIDE 1 → 또 다른 올인이 있으면 그 초과분을 SIDE 2</div>
+        <div id="singleWrap" class="hidden"><input id="totalAns" value="0"></div>
+        <div class="potinputs hidden" id="splitWrap">
+          <label id="mainField">MAIN POT<input id="mainAns" inputmode="decimal" placeholder="0"></label>
+          <label id="side1Field">SIDE POT 1<input id="side1Ans" inputmode="decimal" placeholder="0"></label>
+          <label id="side2Field">SIDE POT 2<input id="side2Ans" inputmode="decimal" placeholder="0"></label>
+        </div>
+        <div class="practicalwrap hidden" id="practicalWrap">
+          <div class="draghelp"><b>실전 칩 정리</b><br>두 방법 중 하나로 연습하세요.<br><b>정계산</b> = 좌석 앞 칩을 POT에 드래그 · <b>역계산</b> = MAIN/SIDE POT 박스를 클릭해 최종 금액 직접 입력<br><span style="color:#8293a0">각 POT마다 계산법을 따로 선택할 수 있습니다. 드롭한 POT만 정계산, 클릭한 POT만 역계산으로 처리됩니다.</span></div>
+          <div id="practicalSteps" style="display:none"></div>
+          <div class="practicalcontrols" style="display:none"><select id="practicalAnchor"></select><button class="practicalbtn" id="practicalActionBtn">확인</button></div>
+          <div class="dragactions"><button id="dragResetBtn">처음부터 다시</button><button class="primarydrag" id="dragCheckBtn">칩 정리 정답 확인</button></div>
+          <div class="dragmovehistory" id="dragMoveHistory"></div>
+          <div class="practicalhint" id="practicalHint">기존 중앙 POT은 이미 모여 있는 칩입니다. 현재 스트리트에서 플레이어 앞에 나온 칩만 직접 MAIN/SIDE로 옮기세요.</div>
+          <div class="practicalresult hidden" id="practicalResult"></div>
+        </div>
+        <div class="showdownquiz hidden" id="showdownWrap">
+          <div class="showpick one" id="showPickRow">
+            <div><label>전체 핸드 1위 · 동률이면 모두 선택</label><div id="firstPick" class="winnercheckgroup"></div></div>
+          </div>
+          <div class="potwinnerrows" id="potWinnerRows"></div>
+          <div class="showdownhint">공개된 핸드와 보드를 보고 각 POT을 실제로 가져갈 플레이어를 판정하세요.</div>
+        </div>
+        <div class="units" id="unitsText"></div>
+        <button class="primary" id="checkBtn" style="margin-top:9px">정답 확인</button>
+        <div class="feedback" id="feedback"></div>
+        <button class="secondary" id="continueBtn" style="display:none">칩 정리 후 계속 ▶</button>
+      </div>
+
+      <div class="card" id="handLogCard" style="display:none"><div id="streetLabel"></div><div id="log"></div></div>
+      <div class="card" id="tipCard" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mobilebar" id="mobileBar">
+  <button id="mobileTableBtn" class="active">테이블</button>
+  <button id="mobileSettingsBtn">설정/시작</button>
+  <button id="mobileQuizBtn">문제/해설</button>
+</div>
+<div class="rotatehint"><div class="box"><b>↻ 가로모드 권장</b><span>모바일 전용 버전은 가로 화면에서 가장 편하게 사용할 수 있습니다.<br>휴대폰을 가로로 돌려주세요.</span></div></div>
+<div class="touchghost" id="touchGhost" style="display:none">칩 이동</div>
+
+<div class="dragmodalback" id="dragModalBack">
+  <div class="dragmodal">
+    <h3 id="dragModalTitle">칩 옮기기</h3>
+    <p id="dragModalDesc"></p>
+    <input id="dragAmountInput" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0">
+    <div class="modalbuttons"><button id="dragCancelBtn">취소</button><button class="ok" id="dragConfirmBtn">옮기기</button></div>
+  </div>
+</div>
+<script src="app.js"></script>
+
+
+</body>
+</html>
