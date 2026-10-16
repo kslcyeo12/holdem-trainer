@@ -50,7 +50,6 @@
     document.getElementById('mobileAmountDesc').textContent='숫자만 입력하면 원래 문제칸에 자동으로 들어갑니다.';
     inp.value=target.value||'';
     back.classList.add('show');
-    /* Must focus during the user gesture so iOS raises its numeric keypad. */
     inp.focus({preventScroll:true});
     try{inp.setSelectionRange(inp.value.length,inp.value.length)}catch(e){}
   }
@@ -68,10 +67,12 @@
 
   function bindCalcInputs(){
     ['mainAns','side1Ans','side2Ans','totalAns'].forEach(id=>{
-      const el=document.getElementById(id);if(!el||el.dataset.mobileAmountBound)return;
+      const el=document.getElementById(id);if(!el)return;
+      if(phone()){el.readOnly=true;el.setAttribute('inputmode','none');}
+      else{el.readOnly=false;el.setAttribute('inputmode','decimal');}
+      if(el.dataset.mobileAmountBound)return;
       el.dataset.mobileAmountBound='1';
       el.addEventListener('click',e=>{if(!phone())return;e.preventDefault();e.stopPropagation();openAmountModal(el);});
-      el.addEventListener('focus',()=>{if(phone())el.blur();});
     });
   }
   bindCalcInputs();
@@ -79,7 +80,7 @@
   /* Existing practical forward/reverse amount modal: force numeric keypad immediately. */
   function prepareDragNumericInput(){
     const inp=document.getElementById('dragAmountInput');if(!inp)return;
-    inp.setAttribute('inputmode','numeric');inp.setAttribute('pattern','[0-9]*');inp.setAttribute('enterkeyhint','done');inp.setAttribute('autocomplete','off');
+    inp.setAttribute('type','text');inp.setAttribute('inputmode','numeric');inp.setAttribute('pattern','[0-9]*');inp.setAttribute('enterkeyhint','done');inp.setAttribute('autocomplete','off');
     if(phone()){
       inp.focus({preventScroll:true});
       try{inp.select()}catch(e){}
@@ -95,4 +96,5 @@
   }
 
   window.addEventListener('orientationchange',()=>setTimeout(bindCalcInputs,250));
+  window.addEventListener('resize',()=>setTimeout(bindCalcInputs,80));
 })();
